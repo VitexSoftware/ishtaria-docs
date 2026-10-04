@@ -1,0 +1,15 @@
+Source: ishtaria-docs
+Section: doc
+Priority: optional
+Maintainer: Vítězslav Dvořák <cybervitexus@gmail.com>
+Build-Depends: debhelper-compat (= 13), python3-sphinx, python3-sphinx-rtd-theme, graphviz
+Standards-Version: 4.7.0
+Homepage: https://github.com/VitexSoftware/ishtaria-docs
+Rules-Requires-Root: no
+
+Package: ishtaria-doc
+Architecture: all
+Depends: ${misc:Depends}, ${sphinxdoc:Depends}
+Description: documentation of the Ishtaria virtual planet
+ Vision, architecture, simulation model, federation protocol and
+ operator guide of Ishtaria, in HTML.

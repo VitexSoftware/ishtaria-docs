@@ -1,0 +1,61 @@
+Ishtaria
+========
+
+**Ishtaria** is an open-source, persistent, federated virtual planet of
+roughly Earth's size, with comparable physics and a living ecosystem.
+
+Players connect with a client, move freely and shape a fully customisable
+avatar. The world starts as untouched wilderness: everything has to be
+gathered, crafted, bought or bartered. Time keeps running while a player is
+offline.
+
+Anyone can run their own world. When the operators of two worlds agree, the
+worlds are linked through **portals** that players build in-game.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Overview
+
+   vision
+   roadmap
+   glossary
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Architecture
+
+   architecture/index
+   architecture/server
+   architecture/client
+   architecture/simulation
+   architecture/persistence
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Federation
+
+   federation/index
+   federation/agreement
+   federation/travel-ticket
+   federation/items-and-economy
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Operating a world
+
+   operations/installation
+   operations/configuration
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Development
+
+   development/repositories
+   development/building-packages
+   development/contributing
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Decision records
+
+   decisions/index

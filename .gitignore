@@ -1,0 +1,6 @@
+/build
+/debian/.debhelper
+/debian/ishtaria-doc/
+/debian/files
+/debian/*.substvars
+/debian/debhelper-build-stamp
