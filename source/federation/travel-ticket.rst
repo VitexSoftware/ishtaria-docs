@@ -66,3 +66,28 @@ Guests and offline players
   ``grace_period``, the home server recovers the player with what they
   carried out, possibly with a penalty. A server outage becomes an in-game
   event instead of a lost character.
+
+Death in the host world
+-----------------------
+
+Death is permanent in every world. When a guest dies in world B:
+
+* B applies its own rules: the grave, memorial and dropped items stay in B.
+* B sends a **signed death notice** to the home world A: player, time, cause
+  and the host world. The notice is idempotent (it carries the travel ticket
+  id), so it can be delivered repeatedly.
+* A records the death in the master record, ends the character (revoking
+  sessions, creating the obituary) and clears the *travelling in B* state.
+  Items that were in transit are not restored: they are part of B's grave.
+* The **obituary in B names the player's home world** (name and public API
+  URL, as published in A's ``server.json``). Visitors reading the memorial
+  can thus discover world A. A world that has federation closed or no public
+  URL is shown by name only. The home world is taken from the signed ticket,
+  never from the notice alone, so the obituary cannot advertise a world that
+  did not issue the ticket.
+* If A cannot be reached from B, the notice is kept and retried. When the
+  worlds cannot reach each other at all, the client carries the signed notice
+  to A the next time it connects. Until it arrives, A treats the player as
+  still travelling.
+* A refuses a notice that is not signed by the world the player was
+  travelling in, or that does not match the ticket it issued.

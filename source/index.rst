@@ -28,6 +28,7 @@ worlds are linked through **portals** that players build in-game.
    architecture/server
    architecture/client
    architecture/simulation
+   architecture/gathering
    architecture/persistence
 
 .. toctree::
@@ -36,6 +37,7 @@ worlds are linked through **portals** that players build in-game.
 
    federation/index
    federation/agreement
+   federation/portal-pacts
    federation/travel-ticket
    federation/items-and-economy
 

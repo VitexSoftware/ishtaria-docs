@@ -49,8 +49,9 @@ Inventory, survival and permanent memorials
 ------------------------------------------
 
 The server persists a permanent UUID for each character. A new character starts
-with 100 gold, four food stacks and 100 inventory slots, granted once on creation.
-Gold stacks; capacity increases by ten per level after the first and through
+with 100 gold coins, four food stacks and 100 inventory slots, granted once on
+creation. Gold coins are inventory items stacking to 10,000 per slot; unlike
+other items they may occupy several slots (migration ``0015_gold_in_inventory.sql``). capacity increases by ten per level after the first and through
 carried bags or suitcases. Food items have distinct calorie values. Eating is an
 authenticated intention; the server consumes an owned item and updates nutrition.
 Seven real days without eating cause starvation, including offline time.

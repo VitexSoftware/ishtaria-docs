@@ -34,10 +34,10 @@ Example
        cosmetics: true
        skills: map            # map | reset | keep
        items:
-         allow_categories: [raw_material, tool, food]
-         deny_categories: [currency, legendary]
+         allow_categories: [raw_material, tool, food, currency]
+         deny_categories: [legendary]
          daily_limit_per_player: 50
-       currency: exchange     # never direct
+       currency: count        # coins cross one for one
 
      export:
        items:
@@ -68,7 +68,9 @@ Fields
    What may enter or leave, by item category. ``deny`` wins over ``allow``.
 
 ``exchange``
-   How foreign currency is converted; never imported directly.
+   Optional conversion by an exchange office, used only with
+   ``currency: exchange``. With ``currency: count`` coins cross one for one
+   as inventory items and are bounded by the item import limits.
 
 ``on_termination``
    What happens to foreign items and visiting players when the agreement
