@@ -56,6 +56,21 @@ action); the inventory panel (``I``) lists the recipes and crafts them. Item
 icons are rendered from the Kenney Survival Kit models by
 ``tools/bake-item-icons.gd``; items without a model (coins, sword) show text only.
 
+Experience and levels
+---------------------
+
+Every swing at a tree or a rock is worth **1 experience point**. Crafting is worth more
+(3 for chopping a log, 4 for planks, 5 for a stone block) and building a portal still
+more: 5 points for every unit of material delivered and 500 for a finished end. A
+character reaches level *n* with ``25 · n · (n − 1)`` points: 50 for level 2, 150 for
+level 3, 500 for level 5, 2 250 for level 10, 9 500 for level 20. Each level gives 10
+inventory slots, up to level 30.
+
+The **score** of a character is ``100 · level + 10 · days lived``. The hall of fame lists
+the ten best characters of the world, living or dead; a dead character keeps the level
+and the days, but the wealth shown next to them becomes zero once anyone has taken
+something from their grave. This makes lost graves worth looking for.
+
 RPG items
 ---------
 

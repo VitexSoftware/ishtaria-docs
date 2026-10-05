@@ -1,7 +1,7 @@
 0005 – Portal pacts start with a player invitation
 ==================================================
 
-:Status: Accepted (invitation and pact exchange implemented; building, tickets and travel planned)
+:Status: Superseded by :doc:`0009-portal-share-links` (invitations and pacts were replaced by share links)
 :Date: 2026-10-05
 
 Context

@@ -51,7 +51,7 @@ Players learn that other worlds exist in three ways, none of them a central
 registry:
 
 * from the **player who invites them** to build a portal
-  (:doc:`portal-pacts`);
+  (:doc:`portal-links`);
 * from a **portal** their world has opened;
 * from an **obituary**: when a guest dies in a world that is not their home,
   the obituary names the home world (see :doc:`travel-ticket`). The client
