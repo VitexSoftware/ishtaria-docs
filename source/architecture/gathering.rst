@@ -10,7 +10,12 @@ Tools
 
 Axe, pickaxe and sword are inventory items (stack of five per slot). Every new
 character starts with all three; characters created earlier received them with
-migration ``0016_gathering.sql``. Felling needs an axe, mining a pickaxe. The
+migration ``0016_gathering.sql``. Only the tool **in hand** works: the inventory offers *Equip* for tools and weapons
+(``POST /players/me/equip``; new characters hold the axe). The axe fells trees, the
+pickaxe mines stone and also fells trees, but needs **twice as many swings**; the
+axe does not work on stone, a sword in hand works on nothing. A swing is worth work
+points (axe on a tree two, pickaxe one), so swings with different tools add up. The
+equipment is cleared at death. The
 sword is for defence once combat exists.
 
 Resources
