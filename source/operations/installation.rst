@@ -50,7 +50,31 @@ Running a world
 
 .. code-block:: sh
 
-   sudo apt install ishtaria-server ishtaria-content
-   sudoedit /etc/ishtaria/server.toml     # set server_name
+   sudo apt install ishtaria-server ishtaria-content ishtaria-worldgen postgresql
+   sudoedit /etc/ishtaria/server.toml     # set server_name (permanent)
+   sudo ishtaria-server-init              # generate a planet and import it (once)
    sudo systemctl enable --now ishtaria-server
    journalctl -u ishtaria-server -f
+
+The package creates the PostgreSQL role and database ``ishtaria`` when
+PostgreSQL is running during installation (peer authentication over the local
+socket). It never touches an existing role or database. ``ishtaria-server-init
+[seed] [face_size]`` runs ``ishtaria-worldgen`` and imports the result; the
+server refuses to replace an already imported world.
+
+Administration
+--------------
+
+.. code-block:: sh
+
+   sudo apt install ishtaria-admin
+   sudo -u ishtaria ishtaria-admin
+
+``ishtaria-admin`` is a text-mode tool that works directly on the server's
+database: save, load, rename, delete and export world maps; rename, ban and
+delete players; manage portals to linked worlds; and schedule a server
+shutdown. A scheduled shutdown shows players a non-dismissable system notice
+with a countdown (``messages`` in ``GET /world``) and then stops the service
+cleanly (exit status 0, so systemd does not restart it). Portals are records
+only until federation is implemented. These functions are deliberately not part
+of ``ishtaria-client``.
