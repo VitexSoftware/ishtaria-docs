@@ -38,8 +38,15 @@ Decision
 * Dialogue state, quest stages, flags and ``once`` rewards are **server state** per
   player. A client names a choice and the sequence number of the answer it saw; it
   never sends gold, items or stages.
-* The server does not know the player's language. It serves the translations of every
-  language and sends only translation keys.
+* The client names its interface language in each dialogue request (``lang``, two
+  letters) so the server can send the spoken line in it. The language is only a request
+  parameter: it is never stored in player, account or database data, and the player's
+  language preference stays with the client. The server still sends translation keys, not
+  translated text; ``/story/strings`` serves the translations of every language.
+* Dialogue lines are spoken: ``media/voice/<language>/<text_key>.ogg``. Synthetic voices
+  (Piper) are rendered while the datadisk package is built; a recording with the same name
+  in the source tree replaces a synthetic line. The full format is in
+  ``ishtaria-protocol/DATADISK-SPEC.md``.
 * A dialogue may show a portrait and play music. Media files are served only from the
   list a loaded disk names, with a fixed set of types (PNG, JPEG, OGG).
 * Missing dialogue text may be drafted **once**, offline, with a local LLM

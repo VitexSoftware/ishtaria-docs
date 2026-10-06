@@ -9,14 +9,14 @@ Files
 
 .. code-block:: text
 
-   datadisk.yaml      id, version, requires/conflicts, ruleset, licence, attribution, rating
+   datadisk.yaml      id, version, requires/conflicts, ruleset, licence, attribution, rating, cover image
    places/*.yaml      sites the generator looks for (city, building, graveyard, landmark, camp)
    npcs/*.yaml        characters at a place: Kenney character, dialogue, portrait
    dialogues/*.yaml   decision trees: text nodes with choices, and automatic branch nodes
    quests/*.yaml      scenarios as stage machines
    lore/*.yaml        codex entries (never spawned)
    music/*.yaml       OGG tracks a dialogue may play
-   media/             portraits (PNG/JPEG up to 1 MiB) and music (OGG up to 8 MiB)
+   media/             cover, portraits (PNG/JPEG up to 1 MiB) and music (OGG up to 8 MiB)
    i18n/<lang>.yaml   every text, in every language the disk declares
 
 A dialogue node holds either ``text_key`` with optional ``choices`` or a ``branch``
@@ -36,6 +36,10 @@ Installed disks live in ``/usr/share/ishtaria/datadisks/<id>/`` (override with
   is stored with the map; *Load* applies it and clears the placed sites.
 * ``ishtaria-server-init <seed> <size> <disk-id> ...`` does the same from the command line.
 
+``GET /world`` announces the world's disks (``datadisks``: id, version, name and the
+URL of the ``cover`` image when the manifest names one). Covers are public media, so a
+client can show them before anyone signs in.
+
 The server places the places on first use (migration ``0026_story.sql`` stores them
 in ``story_anchors`` with the heightmap hash) and pins each disk's content hash in
 ``world_datadisks``.
@@ -52,9 +56,10 @@ HTTP API
    * - ``GET /world/objects`` (``npcs``)
      - Characters near a position: id, name key, character model, position, portrait.
    * - ``POST /story/dialogue/start``
-     - ``{npc_id}``: opens a conversation; the player must stand within 6 m.
+     - ``{npc_id, lang?}``: opens a conversation; the player must stand within 6 m. ``lang`` (two
+       letters, never stored) selects the spoken line (``node.voice``, an OGG under ``/story/media``).
    * - ``POST /story/dialogue/choose``
-     - ``{npc_id, seq, choice}``: applies a choice once; a stale ``seq`` is refused.
+     - ``{npc_id, seq, choice, lang?}``: applies a choice once; a stale ``seq`` is refused.
    * - ``DELETE /story/dialogue``
      - Closes the conversation.
    * - ``GET /story/quests``
@@ -70,7 +75,7 @@ Client
 Characters are drawn with the Kenney character packs and named above the head in the
 player's language. ``E`` talks to the nearest one within reach. The dialogue panel
 shows the portrait beside the speech and plays the track of the dialogue; music follows
-the interface-sound switch of the HUD.
+the interface-sound switch of the HUD, and so do the spoken lines of the characters.
 
 Settlements and harbours
 ------------------------
@@ -83,7 +88,13 @@ that ends up near the sea gets a **harbour** (Pirate Kit: hut, pier, boats and s
 shipwright who sells rowing boats and ships for gold. The shop is ordinary dialogue data
 (``etc/shipwright.yaml``); the vessels are inventory items (migration ``0029_ships.sql``), sailing
 does not exist yet. Datadisk places can ask for the same buildings with
-``scenery: {preset: town, size: village}`` or ``{preset: graveyard}``. The server sends the
+``scenery: {preset: town, size: village}``, ``{preset: graveyard}`` or ``{preset: fortress}``.
+Among the modular houses every settlement gets ready-made Quaternius buildings (a temple in
+villages and towns, a bell tower and barracks in towns, fantasy houses, houses and towers), placed
+with a random stream of their own so the older part of a layout does not move. **A fortress**
+(``fort_NN``, a keep inside a ring of 24 stone wall segments with a gate, barracks and towers) stands
+300-1200 m from every fourth town; a world generated earlier places its fortresses the next time it
+is loaded, and a fortress that finds no room is left out. The server sends the
 buildings as ``props`` in ``GET /world/objects``. Walls, fences, towers, gravestones, crates and
 the like also block walking: the server keeps round obstacles for them (``scenery::colliders``),
 while doors, gates, roofs, piers and ships stay open. Characters of the story are still passable.

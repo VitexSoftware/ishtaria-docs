@@ -55,6 +55,10 @@ other items they may occupy several slots (migration ``0015_gold_in_inventory.sq
 carried bags or suitcases. Food items have distinct calorie values. Eating is an
 authenticated intention; the server consumes an owned item and updates nutrition.
 Seven real days without eating cause starvation, including offline time.
+Water is different: a sleeping (disconnected) character loses none, only time while
+the client is connected is charged. Some food, such as an apple, restores a little
+water; a fountain in a settlement or fresh water (lake or river) restores more when
+the character drinks within reach.
 
 Death is permanent. It revokes every session and transfers remaining possessions
 to a grave atomically. Correct credentials for a dead character return an obituary,
