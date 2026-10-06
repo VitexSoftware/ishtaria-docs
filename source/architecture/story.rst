@@ -106,7 +106,8 @@ Spawn point
 -----------
 
 A town of size ``town`` has a wall with a gate on each of its four roads. A child place with
-``at: gate`` stands just inside the north gate and ``at: alley`` in the back alley beside it
+``at: gate`` stands just inside the north gate and ``at: alley`` in a back alley in the far
+south-west of the town, about 150 m from the gate and out of the guard's sight and hearing
 (``scenery::town_spot``); the generator dresses the alley with crates and barrels and keeps houses
 away. The Endland disk puts Faust and the gate guard at the gate and Fawn in the alley.
 
