@@ -86,13 +86,35 @@ Animals and fish
 
 Animals and fish are a separate layer of the generated world (``etc/world_fauna.json``)
 with their own grid and identifiers, so adding them did not move any tree or rock.
-Land animals (12 species of the Quaternius Animated Animal Pack) stand in the
+Land animals (12 species of the Quaternius Animated Animal Pack) live in the
 grassland, forest, mountain and snow biomes that suit them. Fish (35 species of the
 Animated Fish Bundle) swim below the surface of oceans, lakes and rivers where the
 water is at least three metres deep; freshwater fish stay in lakes and rivers.
-They are scenery for now: they do not collide, move on the server or react, and
-cannot be harvested. The client plays their idle or swimming animation, each at its
-own moment, and lets fish circle around their place.
+Fish are scenery: they do not collide or react and cannot be harvested; the client
+lets them circle around their place. Land animals do not collide either, but they walk.
+
+**Walking.** The server keeps no state for walking animals. Every 30 seconds an animal
+heads for a waypoint that depends only on its identifier and the time (within 40 metres of
+where the seed put it, 14 around a pasture), walking for 21 seconds and then standing. The
+reply of ``GET /world/objects`` carries ``server_time_ms`` and, for each land animal, a
+``wander`` route of waypoints ``[unix ms, x, y, z]`` covering at least a minute; the client
+walks the animal along it (the walking clip while it moves, the idle clip while it stands)
+and asks for the routes again every 30 seconds. The server computes the same route when it
+checks reach, with a few metres of tolerance.
+
+**Farm animals.** Beside every generated settlement a pasture holds a herd (3, 6 or 10
+animals for a hamlet, village or town): cows, bulls, horses, donkeys, an alpaca or a dog from
+the Animated Animal Pack and chickens, pigs and sheep of the Quaternius farm animals
+(CC0). Their identifiers (``<seed>:farm:<number>:<place>``) are a separate namespace, so
+existing scenery does not change.
+
+**Meat and milk.** ``POST /players/me/butcher`` swings the weapon in hand (sword, cleaver,
+knife, dagger or axe, ``etc/creatures.json``) at an animal within reach; several swings
+butcher it for raw meat (and bones), like felling a tree: the animal is stored as a change of
+the world (``world_object_state``) and returns after its respawn time. Animals do not fight
+back. ``POST /players/me/milk`` lets a character drink from a cow within reach (30 points of
+water); each cow gives milk again after ten minutes (``creature_milked``, migration
+``0034_creatures.sql``).
 
 A whole animal can be carried as an item (migration ``0018_animal_items.sql``). It
 fills as many inventory slots as its size suggests: a fox four, a wolf eight, a

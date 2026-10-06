@@ -64,6 +64,9 @@ HTTP API
      - Closes the conversation.
    * - ``GET /story/quests``
      - The player's quests with their current stage.
+   * - ``GET /story/markers``
+     - Places the player's quests point to (``guide``/``reach`` of the current stage, or the ``start_place`` of a
+       quest not yet begun); empty until the player holds the aetherglass.
    * - ``GET /story/strings``
      - Translations of every language (``ETag``).
    * - ``GET /story/media/<disk>/<path>``
@@ -101,6 +104,11 @@ while doors, gates, roofs, piers and ships stay open. Characters of the story ar
 
 Spawn point
 -----------
+
+A town of size ``town`` has a wall with a gate on each of its four roads. A child place with
+``at: gate`` stands just inside the north gate and ``at: alley`` in the back alley beside it
+(``scenery::town_spot``); the generator dresses the alley with crates and barrels and keeps houses
+away. The Endland disk puts Faust and the gate guard at the gate and Fawn in the alley.
 
 A place with ``spawn: true`` is where new characters of the world appear (at most one per disk; with
 several disks the first in the order of application wins). The server picks a free spot near its centre,
