@@ -1,5 +1,7 @@
 # ishtaria-docs
 
+<img src="https://raw.githubusercontent.com/VitexSoftware/ishtaria-client/main/assets/branding/emblem.png" alt="Ishtaria" width="96">
+
 Documentation of Ishtaria, written in reStructuredText and built with Sphinx.
 
 Published at https://vitexsoftware.github.io/ishtaria-docs/ and as the Debian package `ishtaria-doc`.
