@@ -21,6 +21,8 @@ exclude_patterns = []
 html_theme = "sphinx_rtd_theme"
 html_title = "Ishtaria documentation"
 html_static_path = ["_static"]
+html_logo = "_static/logo.png"
+html_favicon = "_static/favicon.ico"
 html_theme_options = {
     "navigation_depth": 3,
     "collapse_navigation": False,
