@@ -54,6 +54,11 @@ worlds are linked through **portals** that players build in-game.
    :caption: Development
 
    development/repositories
+   development/local-setup
+   development/invariants
+   development/server-tour
+   development/client-tour
+   development/cookbook
    development/building-packages
    development/contributing
 
