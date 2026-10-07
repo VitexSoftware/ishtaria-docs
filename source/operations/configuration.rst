@@ -33,7 +33,10 @@ small public world, and the guard is a plain middleware without further dependen
    access_log = "errors"         # "errors", "all" or "off"
    metrics_token = "long-random" # lets a remote scraper read /metrics
 
-* Limits are kept per client address in memory (a restart forgets them). Players behind one address
+* Limits are kept per client address in memory (a restart forgets them). For IPv6 the client is the
+  whole /64 network, because one subscriber owns billions of addresses in it. When the table of
+  addresses is full (a flood from very many addresses) the newcomers share one allowance instead of
+  being refused. Players behind one address
   (a school, a family, a mobile network) share it: raise ``requests_per_second`` and ``burst`` for such a
   world. A walking client sends about ten requests per second.
 * ``trust_proxy = true`` takes the address from the **last** entry of ``X-Forwarded-For``, the one your own
