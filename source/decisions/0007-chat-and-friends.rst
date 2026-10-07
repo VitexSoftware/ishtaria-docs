@@ -1,7 +1,7 @@
 0007 – Text chat and friends
 ============================
 
-:Status: Accepted requirements, design proposed (nothing implemented)
+:Status: Accepted; same-world say and whisper implemented (migration 0035), cross-world relay, blocking and message requests still planned
 :Date: 2026-10-05
 
 Context
@@ -44,6 +44,20 @@ Decision
 * **Discovery.** The world shown next to a friend can be added by the client to
   the server history (``source: friend``). It is only a suggestion: trust
   comes from pacts and pinned keys, as for obituaries.
+
+Implementation (same world)
+---------------------------
+
+* ``POST /chat/say`` delivers a line to present players within 60 m;
+  ``POST /chat/whisper`` sends one to a friend by name. Both are rate limited to one
+  message per second and reject empty, control-character or over-500-character text.
+* Delivery uses the existing ``GET /events`` poll: ``say`` events live for as long as other
+  events (120 s), ``whisper`` events wait up to seven days, at most 100 per recipient,
+  and are deleted once the client's ``after`` position passes them.
+* ``GET /players/nearby`` lists present players within 150 m (name, character, flag,
+  level, position); the client draws them and moves them smoothly between polls.
+* Not implemented yet: blocking, a request list for messages from non-friends,
+  "appear offline" and relaying between worlds.
 
 Consequences
 ------------

@@ -77,8 +77,10 @@ RPG items
 The 55 models of the Quaternius *Ultimate RPG Items Bundle* (CC0) are items of
 the catalog (migration ``0017_item_catalog.sql``): weapons, armour, shields,
 potions, keys, books, valuables and remains. They have names, categories and
-icons; they have **no statistics yet** and no way to be obtained until combat,
-smithing and loot exist. Items with a ``multi_slot`` stack (weapons, armour)
+icons. Since migration ``0036_combat.sql`` armour has defense values and slots
+(``etc/combat.json``), melee weapons have swing points (``etc/creatures.json``), and
+the common ones can be crafted from iron ingots and hides; the rest have no
+statistics yet and no way to be obtained. Items with a ``multi_slot`` stack (weapons, armour)
 fill one slot each.
 
 Animals and fish
