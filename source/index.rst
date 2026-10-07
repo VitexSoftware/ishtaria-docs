@@ -63,6 +63,7 @@ worlds are linked through **portals** that players build in-game.
    development/client-tour
    development/cookbook
    development/building-packages
+   development/steam
    development/contributing
 
 .. toctree::

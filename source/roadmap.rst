@@ -76,3 +76,8 @@ Milestones
        level, a hotbar, a minimap, weather and sleeping in a bed, a tutorial for new players, graphics
        and accessibility settings. Open design questions: player versus player, animals that chase,
        protection of leased land, collision of placed things.
+   * - M10
+     - Release on Steam (optional)
+     - Only if the project owner decides so: conditions, costs, timeline and the gaps of today are in
+       :doc:`development/steam`. The open decisions are the publisher, the platforms and what happens to
+       real-money land leases, which Steam does not allow outside its wallet.
