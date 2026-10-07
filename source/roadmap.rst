@@ -40,3 +40,11 @@ operated on its own.
      - Custom content
      - Hash-addressed content packs, fallbacks for unknown kinds,
        sandboxed WASM server logic.
+   * - M8
+     - Community and visibility
+     - Achievements and share links for social networks
+       (:doc:`decisions/0011-sharing-achievements`), memorial and hall of
+       fame pages, a showcase on the web portal, the chronicle of a world,
+       creator tools. Supported by a developer guide
+       (:doc:`development/contributing`) and a hardened, observable server
+       (:doc:`operations/hardening`).

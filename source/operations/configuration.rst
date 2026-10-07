@@ -17,6 +17,31 @@ Configuration
    (``server/uuid``) embed it, so changing it later breaks identities and
    federation. Choose a domain you will keep.
 
+Limits, logs and metrics
+------------------------
+
+An optional ``[limits]`` table protects a public server. Every key has a default that suits a
+small public world, and the guard is a plain middleware without further dependencies.
+
+.. code-block:: toml
+
+   [limits]
+   auth_per_minute = 10          # registrations and logins per minute from one address
+   requests_per_second = 100     # sustained requests per second from one address ...
+   burst = 300                   # ... and the burst allowed on top of it
+   trust_proxy = false           # true only behind your own reverse proxy
+   access_log = "errors"         # "errors", "all" or "off"
+   metrics_token = "long-random" # lets a remote scraper read /metrics
+
+* Limits are kept per client address in memory (a restart forgets them). Players behind one address
+  (a school, a family, a mobile network) share it: raise ``requests_per_second`` and ``burst`` for such a
+  world. A walking client sends about ten requests per second.
+* ``trust_proxy = true`` takes the address from the **last** entry of ``X-Forwarded-For``, the one your own
+  proxy added. Never set it on a server that clients reach directly, or anybody can pretend to be anybody.
+* A refused request gets ``429`` with ``Retry-After``. Every request has a 30 s time limit (``504``).
+* ``/metrics`` answers loopback only (and not at all behind ``trust_proxy``), or a request with
+  ``Authorization: Bearer <metrics_token>``. See :doc:`monitoring`.
+
 Federation agreements
 ---------------------
 

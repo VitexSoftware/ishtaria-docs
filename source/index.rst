@@ -48,6 +48,9 @@ worlds are linked through **portals** that players build in-game.
 
    operations/installation
    operations/configuration
+   operations/hardening
+   operations/monitoring
+   operations/backup
 
 .. toctree::
    :maxdepth: 2
