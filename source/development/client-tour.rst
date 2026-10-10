@@ -48,7 +48,7 @@ Files
    * - ``survival_panel.gd``, ``player_hud.gd``, ``item_icons.gd``
      - inventory, crafting and spells window; HUD meters; item icons
    * - ``minimap.gd``
-     - top-down minimap showing nearby entities with icons and name initials
+     - top-down minimap showing nearby entities with colored icons (diamond for NPCs, square for places, star for quests, circle for objects), name initials, player arrow, and north direction; uses texture caching and optimized updates
    * - ``story_client.gd``, ``dialogue_panel.gd``, ``quest_panel.gd``
      - datadisk stories, conversations, quests
    * - ``portal_panel.gd``, ``escape_menu.gd``, ``control_settings.gd``
