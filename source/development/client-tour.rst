@@ -47,6 +47,8 @@ Files
      - spells, scrolls, casting
    * - ``survival_panel.gd``, ``player_hud.gd``, ``item_icons.gd``
      - inventory, crafting and spells window; HUD meters; item icons
+   * - ``minimap.gd``
+     - top-down minimap showing nearby entities with icons and name initials
    * - ``story_client.gd``, ``dialogue_panel.gd``, ``quest_panel.gd``
      - datadisk stories, conversations, quests
    * - ``portal_panel.gd``, ``escape_menu.gd``, ``control_settings.gd``
